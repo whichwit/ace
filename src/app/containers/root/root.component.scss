@@ -1,0 +1,16 @@
+// .container {
+//     height: 100%;
+//     width: 100%;
+// }
+
+// .pusher {
+//     margin-left: 209px
+// }
+.container {
+    margin: 1em;
+}
+mat-toolbar {
+    display:flex;
+    position: fixed;
+    justify-content: space-between;
+}

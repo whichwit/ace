@@ -1,0 +1,107 @@
+<div class="grid grid-cols-5">
+    <div class="col-span-3">
+        <mat-stepper orientation="vertical" #stepper>
+            <mat-step [stepControl]="patientFormGroup">
+                <form [formGroup]="patientFormGroup">
+                    <ng-template matStepLabel>Patient search</ng-template>
+                    <div class="flex gap-4">
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="family">
+                        </mat-form-field>
+                    </div>
+                    <div *ngrxLet="patients$ as patients">
+                        <div *ngIf="patients && patients.length > 0">
+                            <table class="w-full text-left">
+                                <thead class="text-gray-700 uppercase">
+                                    <th scope="col" class="px-6 py-3">
+                                        Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Gender
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Birth Date
+                                    </th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b" *ngFor="let p of patients">
+                                        <th scope="row" class="px-6 py-4 font-medium" *ngrxLet="p.name as name">
+                                            {{
+                                            p.name && p.name[0].family }}, <span
+                                                *ngFor="let x of p.name && p.name[0].given">{{ x }}
+                                            </span>
+                                        </th>
+                                        <td>{{ p.gender }}</td>
+                                        <td>{{ p.birthDate }}</td>
+                                        <td>
+                                            <button mat-button matStepperNext color="primary"
+                                                (click)="selectPatient(p.id!)">Select</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="rangeFormGroup">
+                <ng-template matStepLabel>Select time</ng-template>
+                <div class="flex gap-4">
+                    <mat-form-field>
+                        <mat-label>Service</mat-label>
+                        <mat-select [formControl]="healthcareServiceControl">
+                            <mat-option *ngFor="let x of healthcareServices$ | async" [value]="x.id">
+                                {{ x.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngrxLet="slots$ as slots">
+                    <div *ngIf="slots && slots.length > 0">
+                        <table class="w-full text-left">
+                            <thead class="text-gray-700 uppercase">
+                                <th scope="col">
+                                    Status
+                                </th>
+                                <th scope="col">
+                                    Start Time
+                                </th>
+                                <th scope="col">
+                                    End Time
+                                </th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b" *ngFor="let x of slots">
+                                    <td>{{ x.status }}</td>
+                                    <td>{{ x.start | date: 'MM-dd-yyyy HH:mm'}}</td>
+                                    <td>{{ x.end | date: 'MM-dd-yyyy HH:mm' }}</td>
+                                    <td>
+                                        <button mat-button matStepperNext color="primary"
+                                            (click)="selectSlot(x)">Select</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Submit Appointment Request</ng-template>
+                <div class="font-mono" [innerHTML]="p" *ngIf="outcomeDisplay$ | async; let p"></div>
+                <button mat-button matStepperNext color="primary" (click)="submitAppointmentRequest()">Submit</button>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <pre>{{ appointment$ | async | json }}</pre>
+            </mat-step>
+        </mat-stepper>
+    </div>
+    <div class="text-xl">
+        <div class="font-mono" [innerHTML]="p" *ngIf="outcome$ | async; let p"></div>
+        <hr>
+        <pre class="text-xs">{{outcomeRaw$ | async | json }}</pre>
+    </div>
+</div>

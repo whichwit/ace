@@ -1,0 +1,11 @@
+<div *ngIf="loading$ | async" class="progress-bar-container">
+  <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+</div>
+<div class="container py-4">
+  <!-- <div class="flex gap-4">
+    <a routerLink="/slot">Slot</a>
+    <a routerLink="/appointment">Appointment</a>
+  </div> -->
+  <div class="text-2xl font-bold">Ace Health Appointment Self Service</div>
+  <router-outlet></router-outlet>
+</div>
