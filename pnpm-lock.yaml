@@ -20,7 +20,7 @@ specifiers:
   '@ngrx/router-store': ^15.2.1
   '@ngrx/store': ^15.2.1
   '@ngrx/store-devtools': ^15.3.0
-  '@types/fhir': ^0.0.35
+  '@types/fhir': ^0.0.36
   '@types/jasmine': ~4.3.0
   '@types/lodash-es': ^4.17.6
   '@typescript-eslint/eslint-plugin': ^5.50.0
@@ -73,7 +73,7 @@ devDependencies:
   '@angular-devkit/build-angular': 15.1.4_j6aqgx26bmtjnzquccpsedavr4
   '@angular/cli': 15.1.4
   '@angular/compiler-cli': 15.1.3_4khyt5yocueaoa5yhnzf5rhw64
-  '@types/fhir': 0.0.35
+  '@types/fhir': 0.0.36
   '@types/jasmine': 4.3.1
   '@types/lodash-es': 4.17.6
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
@@ -2992,8 +2992,8 @@ packages:
       '@types/serve-static': 1.15.0
     dev: true
 
-  /@types/fhir/0.0.35:
-    resolution: {integrity: sha512-y+VI3Y48xzZBM8AjXPq67EWbiY9VN4Cx5KzN8EplS0Zju8D2KahLXoK6P/PWlKyNTKvJBwemkHzJIocczLRkhQ==}
+  /@types/fhir/0.0.36:
+    resolution: {integrity: sha512-Krjb/2zKlJFjVkEPvs5QFjoYynDF2NaflR8fl4KREgJsvvHG7jrSrLdlS4zTB8E+1MgI1g0fWsz0FzniYmJlMg==}
     dev: true
 
   /@types/http-proxy/1.17.9:
